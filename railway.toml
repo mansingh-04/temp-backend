@@ -1,9 +1,10 @@
 [build]
 builder = "nixpacks"
-watchPatterns = ["**/*.py", "requirements.txt"]
+watchPatterns = ["**/*.py", "requirements.txt", "test-requirements.txt"]
+buildCommand = "pip install -r test-requirements.txt"
 
 [deploy]
-startCommand = "gunicorn --chdir backend app:app --bind 0.0.0.0:$PORT"
+startCommand = "bash start.sh"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
@@ -14,7 +15,7 @@ enable-system-linker = true
 # Configure Python version and system packages
 [variables]
 NIXPACKS_PYTHON_VERSION = "3.9"
-NIXPACKS_APT_PKGS = "tesseract-ocr python3-distutils"
+NIXPACKS_APT_PKGS = "tesseract-ocr"
 
 [[services]]
 name = "analyzer-backend"
