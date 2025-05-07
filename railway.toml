@@ -1,16 +1,12 @@
 [build]
-builder = "nixpacks"
-watchPatterns = ["**/*.py", "requirements.txt", "test-requirements.txt"]
-buildCommand = "pip install -r test-requirements.txt"
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
 
 [deploy]
 startCommand = "bash start.sh"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
-
-[nixpacks]
-enable-system-linker = true
 
 # Configure Python version and system packages
 [variables]
