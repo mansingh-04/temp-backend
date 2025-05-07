@@ -1,12 +1,13 @@
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "bash start.sh"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
+
+[[services]]
+internal_port = 5050
 
 # Configure Python version and system packages
 [variables]
@@ -15,8 +16,15 @@ NIXPACKS_APT_PKGS = "tesseract-ocr"
 
 [[services]]
 name = "analyzer-backend"
-internal_port = 5050
 protocol = "http"
+
+[[services.env]]
+key = "PORT"
+value = "5050"
+
+[[services.env]]
+key = "RAILWAY_ENVIRONMENT"
+value = "production"
 
 [[services.ports]]
 port = 80
