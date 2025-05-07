@@ -1,0 +1,21 @@
+[build]
+builder = "nixpacks"
+watchPatterns = ["**/*.py", "requirements.txt"]
+
+[deploy]
+startCommand = "gunicorn --chdir backend app:app --bind 0.0.0.0:$PORT"
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+
+[nixpacks]
+enable-system-linker = true
+
+[[services]]
+name = "analyzer-backend"
+internal_port = 5050
+protocol = "http"
+
+[[services.ports]]
+port = 80
+handlers = ["http"] 
