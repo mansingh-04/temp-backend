@@ -11,6 +11,11 @@ restartPolicyType = "on_failure"
 [nixpacks]
 enable-system-linker = true
 
+# Configure Python version and system packages
+[variables]
+NIXPACKS_PYTHON_VERSION = "3.9"
+NIXPACKS_APT_PKGS = "tesseract-ocr python3-distutils"
+
 [[services]]
 name = "analyzer-backend"
 internal_port = 5050

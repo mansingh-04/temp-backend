@@ -1,0 +1,9 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "pip>=21.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "website-analyzer"
+version = "1.0.0"
+requires-python = ">=3.7"
+description = "Website analysis tool using AI" 
